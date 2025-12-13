@@ -48,7 +48,7 @@ def guardar_prizes(prizes: List[Prize]) -> None:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
-def filtrar_prizes(year: Optional[str] = None,
+def filtrar_prizes(year: Optional[int] = None,
                    category: Optional[str] = None) -> List[Prize]:
     """Devuelve premios filtrando por year y/o category."""
     # 1) Cargo todos los premios
@@ -70,7 +70,7 @@ def filtrar_prizes(year: Optional[str] = None,
 
 
 
-def obtener_prize(year: str, category: str) -> Optional[Prize]:
+def obtener_prize(year: int, category: str) -> Optional[Prize]:
     """Devuelve un premio específico por year y category, o None si no existe."""
     prizes = cargar_prizes()
     for p in prizes:
@@ -103,7 +103,7 @@ def agregar_prize(nuevo: PrizeCreate) -> Prize:
 
 
 
-def actualizar_prize(year: str, category: str, actualizado: PrizeCreate) -> Optional[Prize]:
+def actualizar_prize(year: int, category: str, actualizado: PrizeCreate) -> Optional[Prize]:
     """
     Actualiza un premio existente. Devuelve el premio actualizado
     o None si no existía.
@@ -135,7 +135,7 @@ def actualizar_prize(year: str, category: str, actualizado: PrizeCreate) -> Opti
 
 
 
-def eliminar_prize(year: str, category: str) -> bool:
+def eliminar_prize(year: int, category: str) -> bool:
     """
     Elimina un premio por year+category.
     Devuelve True si lo eliminó, False si no existía.

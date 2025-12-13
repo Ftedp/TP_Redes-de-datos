@@ -11263,6 +11263,19 @@
           "share": 0
         }
       ]
+    },
+    {
+      "year": 2025,
+      "category": "string",
+      "laureates": [
+        {
+          "id": 0,
+          "firstname": "string",
+          "surname": "string",
+          "motivation": "string",
+          "share": 0
+        }
+      ]
     }
   ]
 }

@@ -105,7 +105,7 @@ app.add_middleware(
 #-----RUTAS-------------------------------------------------------------------------------------
 
 @app.get("/prizes", response_model=List[Prize])
-def listar_prizes(year: Optional[str] = None, category: Optional[str] = None, _: None = Depends(limitar_requests)):
+def listar_prizes(year: Optional[int] = None, category: Optional[str] = None, _: None = Depends(limitar_requests)):
     """
     Lista premios. Se puede filtrar por year, category o ambos.
     Ejemplos:
@@ -118,7 +118,7 @@ def listar_prizes(year: Optional[str] = None, category: Optional[str] = None, _:
 
 
 @app.get("/prizes/{year}/{category}", response_model=Prize)
-def obtener_prize(year: str, category: str, _: None = Depends(limitar_requests)):
+def obtener_prize(year: int, category: str, _: None = Depends(limitar_requests)):
     """
     Obtiene un premio específico por year y category.
     Ejemplo: GET /prizes/2025/chemistry
@@ -146,7 +146,7 @@ def crear_prize(datos: PrizeCreate,
 
 
 @app.put("/prizes/{year}/{category}", response_model=Prize)
-def modificar_prize(year: str, category: str, datos: PrizeCreate, 
+def modificar_prize(year: int, category: str, datos: PrizeCreate, 
     _: bool = Depends(verificar_usuario),
     __: None = Depends(limitar_requests)):
     """
@@ -159,7 +159,7 @@ def modificar_prize(year: str, category: str, datos: PrizeCreate,
 
 
 @app.delete("/prizes/{year}/{category}", status_code=204)
-def borrar_prize(year: str, category: str, _: bool = Depends(verificar_usuario),
+def borrar_prize(year: int, category: str, _: bool = Depends(verificar_usuario),
     __: None = Depends(limitar_requests)):
     """
     Elimina un premio. Devuelve 204 No Content si se elimina.
